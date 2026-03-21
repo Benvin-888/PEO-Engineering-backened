@@ -38,8 +38,7 @@ const limiter = rateLimit({
 // Apply rate limiting to API routes
 app.use('/api/', limiter);
 
-// Serve static files (your HTML/CSS/JS)
-app.use(express.static(path.join(__dirname, '../')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Request logger middleware
 app.use((req, res, next) => {
