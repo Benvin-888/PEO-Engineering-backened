@@ -88,6 +88,14 @@ const getClientIp = (req) => {
 // ============= API ROUTES =============
 
 /**
+ * GET /ping
+ * Simple health check endpoint for load balancers and monitoring
+ */
+app.get("/ping", (req, res) => {
+  res.send("OK");
+});
+
+/**
  * POST /api/send-email
  * Send contact form emails (admin + user)
  */
