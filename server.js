@@ -205,24 +205,6 @@ if (config.server.env === 'development') {
     });
 }
 
-// ============= SERVE FRONTEND =============
-
-// Serve the contact page (or any other page)
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
-});
-
-app.get('/contact', (req, res) => {
-    res.sendFile(path.join(__dirname, '../contact.html'));
-});
-
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Aboutus.html'));
-});
-
-app.get('/services', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Services.html'));
-});
 
 // Catch-all for other routes - serve contact page
 app.get('/catch-all', (req, res) => {
