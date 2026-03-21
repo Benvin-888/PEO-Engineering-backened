@@ -38,7 +38,37 @@ const limiter = rateLimit({
 // Apply rate limiting to API routes
 app.use('/api/', limiter);
 
-app.use(express.static(path.join(__dirname, '../public')));
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Also add this to serve from the parent directory if needed
+app.use(express.static(path.join(__dirname, '../')));
+
+// ============= SPECIFIC ROUTE FOR LOGO =============
+/**
+ * GET /Logo.jpg
+ * Serve the company logo file
+ */
+app.get('/Logo.jpg', (req, res) => {
+    const logoPath = path.join(__dirname, 'public', 'Logo.jpg');
+    console.log(`📸 Serving logo from: ${logoPath}`);
+    
+    // Send the file with proper headers
+    res.sendFile(logoPath, (err) => {
+        if (err) {
+            console.error('❌ Error serving logo:', err);
+            res.status(404).send('Logo not found');
+        } else {
+            console.log('✅ Logo served successfully');
+        }
+    });
+});
+
+// Also add a route for lowercase logo.jpg (for case-insensitive access)
+app.get('/logo.jpg', (req, res) => {
+    const logoPath = path.join(__dirname, 'public', 'Logo.jpg');
+    res.sendFile(logoPath);
+});
 
 // Request logger middleware
 app.use((req, res, next) => {
@@ -250,5 +280,6 @@ app.listen(PORT, () => {
     console.log(`📧 Email Service: Brevo (Sendinblue)`);
     console.log(`📧 Sender Email: ${config.brevo.sender.email}`);
     console.log(`📧 Admin Email: ${config.brevo.companyEmail}`);
+    console.log(`🖼️  Logo URL: http://${config.server.host}:${PORT}/Logo.jpg`);
     console.log('=================================\n');
 });
