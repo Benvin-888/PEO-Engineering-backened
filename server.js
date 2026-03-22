@@ -44,6 +44,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Also add this to serve from the parent directory if needed
 app.use(express.static(path.join(__dirname, '../')));
 
+// Root route (fixes UptimeRobot 404)
+app.get('/', (req, res) => {
+    res.status(200).send('🚀 PEO Engineering API is running');
+});
+
 // ============= SPECIFIC ROUTE FOR LOGO =============
 /**
  * GET /Logo.jpg
@@ -289,5 +294,6 @@ app.listen(PORT, () => {
     console.log(`📧 Sender Email: ${config.brevo.sender.email}`);
     console.log(`📧 Admin Email: ${config.brevo.companyEmail}`);
     console.log(`🖼️  Logo URL: http://${config.server.host}:${PORT}/Logo.jpg`);
+    console.log(`🏠 Root route: http://${config.server.host}:${PORT}/`);
     console.log('=================================\n');
 });
