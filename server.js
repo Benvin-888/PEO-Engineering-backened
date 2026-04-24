@@ -53,18 +53,23 @@ app.get('/', (req, res) => {
 /**
  * GET /Logo.jpg
  * Serve the company logo file
- */
 app.get('/Logo.jpg', (req, res) => {
     const logoPath = path.join(__dirname, 'public', 'Logo.jpg');
-    console.log(`📸 Serving logo from: ${logoPath}`);
-    
-    // Send the file with proper headers
+
+    console.log('📥 Request received for /Logo.jpg');
+    console.log('📂 Attempting to serve from:', logoPath);
+
     res.sendFile(logoPath, (err) => {
         if (err) {
-            console.error('❌ Error serving logo:', err);
-            res.status(404).send('Logo not found');
+            console.error('❌ Logo not found locally');
+            console.error('🔍 Error details:', err.message);
+
+            const fallbackUrl = 'https://peo-engineering-backened-h12i.onrender.com/Logo.jpg';
+            console.log('🔁 Redirecting to fallback URL:', fallbackUrl);
+
+            return res.redirect(fallbackUrl);
         } else {
-            console.log('✅ Logo served successfully');
+            console.log('✅ Logo served successfully from local file');
         }
     });
 });
