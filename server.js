@@ -248,20 +248,7 @@ if (config.server.env === 'development') {
 }
 
 
-// Catch-all for other routes - serve contact page
-app.get('/catch-all', (req, res) => {
-    // Check if the request is for an API endpoint
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({
-            success: false,
-            error: 'API endpoint not found'
-        });
-    }
-    // Otherwise serve the contact page
-    res.sendFile(path.join(__dirname, '../contact.html'));
-});
-
-// ============= ERROR HANDLING =============
+====== ERROR HANDLING =============
 
 // 404 handler for API routes
 app.use('/api/', (req, res) => {
