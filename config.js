@@ -29,7 +29,7 @@ module.exports = {
     
     // config.js
 cors: {
-    origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost:5006', 'http://127.0.0.1:5006'],
+    origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost:5006', 'http://127.0.0.1:5006','https://peo-engineering.web.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
