@@ -248,7 +248,7 @@ if (config.server.env === 'development') {
 }
 
 
-====== ERROR HANDLING =============
+
 
 // 404 handler for API routes
 app.use('/api/', (req, res) => {
